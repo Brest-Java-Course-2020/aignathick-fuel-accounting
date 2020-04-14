@@ -114,4 +114,5 @@ curl --location --request GET 'localhost:8088/fuel_dtos' | json_pp
     in path field use adress: "http://localhost:8081/".
     this adress will redirect you on fuels page: "http://localhost:8081/fuels"
     For date moment 2020_04_03 23:23 monolite web application is ready
+    test
 
