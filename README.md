@@ -10,6 +10,9 @@ Setup java 11 and Maven, see [enviroment_setup.md](enviroment_setup.md)
 Goto Project folder and execute  
     
     mvn clean install
+    
+## Postman requests collection
+For testing rest queries, there is postman request collection available [postman requests collection](aignathick_fuel_acounting.postman_collection.json)
 
 ## Rest Server
 ### Start Rest using Maven Jetty plugin
@@ -21,7 +24,6 @@ or
 cd fuel-accounting-rest-app
 mvn jetty:run
 ```
-
 ## Available Rest endpoints
 ### version
     curl --location --request GET 'localhost:8088/version'
