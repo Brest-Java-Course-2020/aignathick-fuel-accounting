@@ -7,10 +7,7 @@ import com.epam.brest.courses.service.FuelDtoService;
 import com.epam.brest.courses.service.TransportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -19,6 +16,9 @@ import java.util.*;
  * Transport Service Rest.
  */
 public class TransportServiceRest implements TransportService {
+
+    public static final String SEARCH_BY_FUEL_ID_URL = "/fuel/";
+    public static final String FILTER_URL = "/filter";
     private static Logger LOGGER = LoggerFactory.getLogger(TransportServiceRest.class);
     private String url;
     private RestTemplate restTemplate;
@@ -56,7 +56,7 @@ public class TransportServiceRest implements TransportService {
         filterMap.put("dateFrom", dateFrom);
         filterMap.put("dateTo", dateTo);
         HttpEntity<Map<String, Date>> request = new HttpEntity<Map<String, Date>>(filterMap, headers);
-        ResponseEntity responseEntity = restTemplate.postForEntity(url, request, List.class);
+        ResponseEntity responseEntity = restTemplate.postForEntity(url + FILTER_URL, request, List.class);
         return (List<Transport>) responseEntity.getBody();
     }
 
@@ -68,7 +68,9 @@ public class TransportServiceRest implements TransportService {
      */
     @Override
     public List<Transport> findByFuelId(Integer fuelId) {
-        return null;
+        LOGGER.debug("findByFuelId({})", fuelId);
+        ResponseEntity responseEntity = restTemplate.getForEntity(url+ SEARCH_BY_FUEL_ID_URL + fuelId, List.class);
+        return (List<Transport>) responseEntity.getBody();
     }
 
     /**
@@ -79,7 +81,9 @@ public class TransportServiceRest implements TransportService {
      */
     @Override
     public Optional<Transport> findById(Integer transportId) {
-        return Optional.empty();
+        ResponseEntity<Transport> responseEntity =
+                restTemplate.getForEntity(url + "/" + transportId, Transport.class);
+        return Optional.ofNullable(responseEntity.getBody());
     }
 
     /**
@@ -90,7 +94,10 @@ public class TransportServiceRest implements TransportService {
      */
     @Override
     public Integer create(Transport transport) {
-        return null;
+        LOGGER.debug("create({})", transport);
+        ResponseEntity responseEntity =
+                restTemplate.postForEntity(url, transport ,Integer.class);
+        return (Integer) responseEntity.getBody();
     }
 
     /**
@@ -101,7 +108,13 @@ public class TransportServiceRest implements TransportService {
      */
     @Override
     public int update(Transport transport) {
-        return 0;
+        LOGGER.debug("update({})", transport);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Transport> entity = new HttpEntity<>(transport, headers);
+        ResponseEntity<Integer> result = restTemplate.exchange(url,
+                HttpMethod.PUT, entity, Integer.class);
+        return result.getBody();
     }
 
     /**
@@ -112,6 +125,13 @@ public class TransportServiceRest implements TransportService {
      */
     @Override
     public int delete(Integer transportId) {
-        return 0;
+
+        LOGGER.debug("delete({})", transportId);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Transport> entity = new HttpEntity<>(headers);
+        ResponseEntity<Integer> result = restTemplate.exchange(url + "/" + transportId,
+                HttpMethod.DELETE, entity, Integer.class);
+        return result.getBody();
     }
 }
