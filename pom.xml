@@ -17,6 +17,7 @@
         <module>fuel-accounting-service</module>
         <module>fuel-accounting-service-api</module>
         <module>fuel-accounting-rest-app</module>
+        <module>fuel-accounting-service-rest</module>
     </modules>
 
     <properties>
