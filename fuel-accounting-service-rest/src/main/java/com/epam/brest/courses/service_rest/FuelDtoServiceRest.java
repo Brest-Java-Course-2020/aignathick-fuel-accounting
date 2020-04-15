@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+/**
+ * Fuel Dtos Service Rest.
+ */
 public class FuelDtoServiceRest implements FuelDtoService {
     private static Logger LOGGER = LoggerFactory.getLogger(FuelDtoServiceRest.class);
     private String url;
@@ -19,6 +22,11 @@ public class FuelDtoServiceRest implements FuelDtoService {
         this.restTemplate = restTemplate;
     }
 
+    /**
+     * Find all fuels with sum of transports tank capasity by fuel type.
+     *
+     * @return Fuels DTO list,
+     */
     @Override
     public List<FuelDto> findAllWithFuelSum() {
         LOGGER.debug("findAllWithFuelSum()");
