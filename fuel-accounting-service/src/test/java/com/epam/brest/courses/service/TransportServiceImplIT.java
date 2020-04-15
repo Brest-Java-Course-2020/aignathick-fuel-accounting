@@ -80,6 +80,9 @@ public class TransportServiceImplIT {
         List<Transport> transports = transportService.findByFuelId(1);
         assertNotNull(transports);
         assertTrue(transports.size() > 0);
+        for (Transport transport: transports) {
+            assertEquals(Integer.valueOf(1), transport.getFuelId());
+        }
     }
 
     @Test
