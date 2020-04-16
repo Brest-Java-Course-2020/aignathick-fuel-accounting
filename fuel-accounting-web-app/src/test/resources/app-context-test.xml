@@ -32,6 +32,16 @@
         </property>
     </bean>
 
+    <bean id="fuelController" class="com.epam.brest.courses.web_app.FuelController">
+        <constructor-arg index="0" ref="fuelDtoService"/>
+        <constructor-arg index="1" ref="fuelService"/>
+    </bean>
+
+    <bean id="transportController" class="com.epam.brest.courses.web_app.TransportController">
+        <constructor-arg index="0" ref="transportService"/>
+        <constructor-arg index="1" ref="fuelService"/>
+    </bean>
+
     <bean id="fuelService" class="com.epam.brest.courses.service.FuelServiceImpl">
         <constructor-arg ref="fuelDao"/>
     </bean>

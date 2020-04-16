@@ -1,9 +1,6 @@
 package com.epam.brest.courses.service_rest;
 
-import com.epam.brest.courses.model.Fuel;
 import com.epam.brest.courses.model.Transport;
-import com.epam.brest.courses.model.dto.FuelDto;
-import com.epam.brest.courses.service.FuelDtoService;
 import com.epam.brest.courses.service.TransportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
