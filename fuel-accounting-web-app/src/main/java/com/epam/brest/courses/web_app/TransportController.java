@@ -85,8 +85,8 @@ public class TransportController {
      * @param model model.
      * @return view name.
      */
-    @PostMapping(value = "/transports")
-    public  String findTransportsByDatesPost(@DateTimeFormat(pattern="yyyy-MM-dd") @RequestParam(name = "dateFrom") Date dateFrom,
+    @PostMapping(value = "/transports/filter")
+    public  String findTransportsByDatesPost(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") @RequestParam(name = "dateFrom") Date dateFrom,
                                              @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") @RequestParam(name = "dateTo") Date dateTo,
                                              Model model){
         LOGGER.debug("findTransportsByDates({},{},{})", dateFrom, dateTo, model);

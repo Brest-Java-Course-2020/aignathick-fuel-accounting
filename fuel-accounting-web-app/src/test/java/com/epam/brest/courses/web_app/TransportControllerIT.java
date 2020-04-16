@@ -79,7 +79,7 @@ public class TransportControllerIT {
     @Test
     public void shouldFindTransportInDateRangeByPostMethod() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/transports")
+                MockMvcRequestBuilders.post("/transports/filter")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("dateFrom", "2020-01-01")
                         .param("dateTo", "2020-01-31")

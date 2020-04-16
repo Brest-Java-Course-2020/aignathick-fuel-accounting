@@ -80,7 +80,7 @@ public class FuelServiceRestTest {
                 .andExpect(method(HttpMethod.POST))
                 .andRespond(withStatus(HttpStatus.OK)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(mapper.writeValueAsString(1))
+                    .body(mapper.writeValueAsString("1"))
                 );
 
         // when
