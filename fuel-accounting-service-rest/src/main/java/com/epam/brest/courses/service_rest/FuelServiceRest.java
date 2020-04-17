@@ -4,6 +4,7 @@ import com.epam.brest.courses.model.Fuel;
 import com.epam.brest.courses.service.FuelService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,7 +34,12 @@ public class FuelServiceRest implements FuelService {
     @Override
     public List<Fuel> findAll() {
         LOGGER.debug("findAll()");
-        ResponseEntity responseEntity = restTemplate.getForEntity(url, List.class);
+        //ResponseEntity responseEntity = restTemplate.getForEntity(url, List.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Fuel> entity = new HttpEntity<>(null, headers);
+        ParameterizedTypeReference<List<Fuel>> responseType = new ParameterizedTypeReference<List<Fuel>>() {};
+        ResponseEntity responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, responseType);
         return (List<Fuel>) responseEntity.getBody();
     }
 

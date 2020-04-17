@@ -4,6 +4,7 @@ import com.epam.brest.courses.model.Transport;
 import com.epam.brest.courses.service.TransportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,7 +34,12 @@ public class TransportServiceRest implements TransportService {
     @Override
     public List<Transport> findAll() {
         LOGGER.debug("findAll()");
-        ResponseEntity responseEntity = restTemplate.getForEntity(url, List.class);
+        //ResponseEntity responseEntity = restTemplate.getForEntity(url, List.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Transport> entity = new HttpEntity<>(null, headers);
+        ParameterizedTypeReference<List<Transport>> responseType = new ParameterizedTypeReference<List<Transport>>() {};
+        ResponseEntity responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, responseType);
         return (List<Transport>) responseEntity.getBody();
     }
 
@@ -53,7 +59,9 @@ public class TransportServiceRest implements TransportService {
         filterMap.put("dateFrom", dateFrom);
         filterMap.put("dateTo", dateTo);
         HttpEntity<Map<String, Date>> request = new HttpEntity<Map<String, Date>>(filterMap, headers);
-        ResponseEntity responseEntity = restTemplate.postForEntity(url + FILTER_URL, request, List.class);
+        //ResponseEntity responseEntity = restTemplate.postForEntity(url + FILTER_URL, request, List.class);
+        ParameterizedTypeReference<List<Transport>> responseType = new ParameterizedTypeReference<List<Transport>>() {};
+        ResponseEntity responseEntity = restTemplate.exchange(url + FILTER_URL, HttpMethod.POST, request, responseType);
         return (List<Transport>) responseEntity.getBody();
     }
 
