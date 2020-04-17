@@ -9,7 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
+
 /**
  * Fuel rest controller.
  */
@@ -29,9 +30,10 @@ public class FuelController {
      * @return fuels list json.
      */
     @GetMapping(value = "/fuels")
-    public Collection<Fuel> fuels() {
+    public ResponseEntity<List<Fuel>> fuels() {
         LOGGER.debug("fuels()");
-        return fuelService.findAll();
+        List<Fuel> result = fuelService.findAll();
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /**
