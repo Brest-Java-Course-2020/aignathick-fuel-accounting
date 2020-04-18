@@ -110,6 +110,6 @@ curl --location --request GET 'localhost:8088/fuel_dtos' | json_pp
 #### Go to project directory and copy war files into Tomcat server webapp directory
     cd ~/development/aignathick-fuel-accounting
     cp fuel-accounting-web-app/target/fuel-accounting-web.war ~/apache-tomcat-9.0.34/webapps/
-    cp fuel-accounting-web-app/target/fuel-accounting-web.war ~/apache-tomcat-9.0.34/webapps/
+    cp fuel-accounting-rest-app/target/fuel-accounting-rest.war ~/apache-tomcat-9.0.34/webapps/
 Application should be available by url: http://localhost:8080/fuel-accounting-web 
 
