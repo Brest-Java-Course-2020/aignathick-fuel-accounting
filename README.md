@@ -98,21 +98,18 @@ curl --location --request GET 'localhost:8088/fuel_dtos' | json_pp
         "transportTankCapasity": 80.0,
         "transportDate": "2020-04-13"
     }'
-
-## Start monolite web application using Maven Jetty plugin
- ```
- mvn jetty:run -pl fuel-accounting-web-app
- ```    
- or
- ``` 
- cd fuel-accounting-web-app
- mvn jetty:run
- ```
-
-## Connect to web application using localhost or 127.0.0.1 adress and 8081 port
-    Application was tested on browser google chrome 80.0.3987.132
-    in path field use adress: "http://localhost:8081/".
-    this adress will redirect you on fuels page: "http://localhost:8081/fuels"
-    For date moment 2020_04_03 23:23 monolite web application is ready
-    test
+    
+### Deploy applications on Tomcat server
+#### Download and run Tomcat server from user directory
+    cd ~
+    wget https://mirror.datacenter.by/pub/apache.org/tomcat/tomcat-9/v9.0.34/bin/apache-tomcat-9.0.34.tar.gz
+    tar xvzf apache-tomcat-9.0.34.tar.gz
+    cd apache-tomcat-9.0.34/bin/
+    chmod +x startup.sh
+    ./startup.sh
+#### Go to project directory and copy war files into Tomcat server webapp directory
+    cd ~/development/aignathick-fuel-accounting
+    cp fuel-accounting-web-app/target/fuel-accounting-web.war ~/apache-tomcat-9.0.34/webapps/
+    cp fuel-accounting-web-app/target/fuel-accounting-web.war ~/apache-tomcat-9.0.34/webapps/
+Application should be available by url: http://localhost:8080/fuel-accounting-web 
 

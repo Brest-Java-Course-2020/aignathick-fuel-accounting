@@ -112,6 +112,7 @@
     </dependencies>
 
     <build>
+        <finalName>fuel-accounting-rest</finalName>
         <plugins>
             <!-- Embedded Jetty HTTP Server for testing web application -->
             <plugin>

@@ -110,7 +110,34 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>tomcat</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>fuel-accounting-web-tomcat</name>
+                    <value>tomcat</value>
+                </property>
+            </activation>
+            <properties>
+                <port>8080</port>
+                <point.fuels>fuel-accounting-rest/fuels</point.fuels>
+                <point.fuel_dtos>fuel-accounting-rest/fuel_dtos</point.fuel_dtos>
+                <point.transports>fuel-accounting-rest/transports</point.transports>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
+        <finalName>fuel-accounting-web</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <!-- Embedded Jetty HTTP Server for testing web application -->
             <plugin>
@@ -134,7 +161,5 @@
 
         </plugins>
     </build>
-
-
 
 </project>
