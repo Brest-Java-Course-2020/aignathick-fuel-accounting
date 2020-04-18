@@ -24,7 +24,7 @@ import javax.validation.Valid;
 import java.util.*;
 
 /**
- * Hello MVC controller.
+ * Transport MVC controller.
  */
 @Controller
 public class TransportController {
