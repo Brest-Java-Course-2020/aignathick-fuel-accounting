@@ -84,7 +84,7 @@
 
                             <td class="text-left">
                                 <span data-toggle="modal" data-target="#deleteDialog"
-                                th:attr="data-id=${fuel.fuelId}, data-name=${fuel.fuelName}">
+                                th:attr="data-id=${fuel.fuelId}, data-name=${fuel.fuelName}, data-url=@{|/fuel/|}">
                                 <a href="#"
                                    class="btn-sm btn-outline-secondary"
                                    title="Delete fuel"
@@ -170,7 +170,7 @@
     $('#deleteDialog').on('show.bs.modal', function (event) {
         var target = $(event.relatedTarget);
         $(this).find('.modal-body').text('Please confirm delete fuel: "' + target.data('name') + '"');
-        document.getElementById('deleteUrl').href = '/fuel/' + target.data('id') + '/delete';
+        document.getElementById('deleteUrl').href = target.data('url') + target.data('id') + '/delete';
     });
 
     $(function () {
