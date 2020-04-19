@@ -164,13 +164,21 @@ public class TransportController {
      * Persist new transport into persistence storage.
      *
      * @param transport new transport with filled data.
+     * @param result binding result.
      * @return view name.
      */
     @PostMapping(value = "/transport")
-    public String addTransport(Transport transport){
-        LOGGER.debug("addTransport({})", transport);
-        this.transportService.create(transport);
-        return "redirect:/transports";
+    public String addTransport(@Valid Transport transport, BindingResult result){
+        LOGGER.debug("addTransport({}, {})", transport, result);
+        transportNameValidator.validate(transport, result);
+        transportDateValidator.validate(transport, result);
+        transportTankCapasityValidator.validate(transport, result);
+        if (result.hasErrors()) {
+            return "transport";
+        } else {
+            this.transportService.create(transport);
+            return "redirect:/transports";
+        }
     }
 
     /**

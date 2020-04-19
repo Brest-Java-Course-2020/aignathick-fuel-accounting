@@ -70,10 +70,23 @@ public class TransportValidatorTest {
     }
 
     @Test
+    public void shouldRejectTransportTankCapasityNullValue(){
+        // given
+        Mockito.when(transport.getTransportTankCapasity())
+                .thenReturn(null);
+
+        // when
+        transportTankCapasityValidator.validate(transport, result);
+
+        // then
+        assertTrue(result.hasErrors());
+    }
+
+    @Test
     public void shouldRejectTransportTankCapasityLessThanZero(){
         // given
         Mockito.when(transport.getTransportTankCapasity())
-                .thenReturn((double)-1);
+                .thenReturn(-1.d);
 
         // when
         transportTankCapasityValidator.validate(transport, result);
