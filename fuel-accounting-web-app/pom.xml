@@ -127,6 +127,22 @@
                 <point.transports>fuel-accounting-rest/transports</point.transports>
             </properties>
         </profile>
+        <profile>
+            <id>jetty</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>fuel-accounting-web-jetty</name>
+                    <value>jetty</value>
+                </property>
+            </activation>
+            <properties>
+                <port>8088</port>
+                <point.fuels>/fuels</point.fuels>
+                <point.fuel_dtos>/fuel_dtos</point.fuel_dtos>
+                <point.transports>/transports</point.transports>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
