@@ -11,6 +11,7 @@ import static com.epam.brest.courses.constants.TransportConstants.TRANSPORT_TANK
 
 @Component
 public class TransportTankCapasityValidator implements Validator {
+
     @Override
     public boolean supports(Class<?> clazz) {
         return Transport.class.equals(clazz);
@@ -18,13 +19,15 @@ public class TransportTankCapasityValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Transport transport = (Transport) target;
-        ValidationUtils.rejectIfEmpty(errors, TRANSPORT_TANK_CAPASITY, "transportTankCapasity.empty");
 
-        if (transport.getTransportTankCapasity() < 0) {
-            errors.rejectValue(TRANSPORT_TANK_CAPASITY, "transportTankCapasity.minSize");
-        } else if (transport.getTransportTankCapasity() > TRANSPORT_TANK_CAPASITY_SIZE) {
-            errors.rejectValue(TRANSPORT_TANK_CAPASITY, "transportTankCapasity.maxSize");
+       ValidationUtils.rejectIfEmpty(errors, TRANSPORT_TANK_CAPASITY, "transportTankCapasity.empty");
+       Transport transport = (Transport) target;
+        if (!errors.hasErrors()) {
+            if (transport.getTransportTankCapasity() < 0) {
+                errors.rejectValue(TRANSPORT_TANK_CAPASITY, "transportTankCapasity.minSize");
+            } else if (transport.getTransportTankCapasity() > TRANSPORT_TANK_CAPASITY_SIZE) {
+                errors.rejectValue(TRANSPORT_TANK_CAPASITY, "transportTankCapasity.maxSize");
+            }
         }
     }
 }
