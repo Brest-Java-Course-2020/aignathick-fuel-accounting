@@ -31,22 +31,21 @@
         </property>
     </bean>
 
-    <bean id="fuelDao" class="com.epam.brest.courses.dao.FuelDaoJdbc">
-        <constructor-arg ref="jdbcTemplate"/>
+    <bean id="fuelService" class="com.epam.brest.courses.service.FuelServiceImpl">
+        <constructor-arg ref="fuelDao"/>
     </bean>
-
-<!--    <bean id="fuelService" class="com.epam.brest.courses.service.FuelServiceImpl">-->
-<!--        <constructor-arg ref="fuelDao"/>-->
-<!--    </bean>-->
-<!--    <bean id="fuelDtoService" class="com.epam.brest.courses.service.FuelDtoServiceImpl">-->
-<!--        <constructor-arg ref="fuelDtoDao"/>-->
-<!--    </bean>-->
+    <bean id="fuelDtoService" class="com.epam.brest.courses.service.FuelDtoServiceImpl">
+        <constructor-arg ref="fuelDtoDao"/>
+    </bean>
     <bean id="transportService" class="com.epam.brest.courses.service.TransportServiceImpl">
         <constructor-arg ref="transportDao"/>
     </bean>
-<!--    <bean id="fuelDtoDao" class="com.epam.brest.courses.dao.FuelDtoDaoJdbc">-->
-<!--        <constructor-arg ref="jdbcTemplate"/>-->
-<!--    </bean>-->
+    <bean id="fuelDtoDao" class="com.epam.brest.courses.dao.FuelDtoDaoJdbc">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+    <bean id="fuelDao" class="com.epam.brest.courses.dao.FuelDaoJdbc">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
     <bean id="transportDao" class="com.epam.brest.courses.dao.TransportDaoJdbc">
         <constructor-arg ref="jdbcTemplate"/>
     </bean>

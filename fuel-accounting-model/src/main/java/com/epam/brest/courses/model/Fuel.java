@@ -1,5 +1,7 @@
 package com.epam.brest.courses.model;
 
+import java.util.Objects;
+
 /**
  * POJO Fuel for model.
  */
@@ -59,5 +61,19 @@ public class Fuel {
                 "fuelId=" + fuelId +
                 ", fuelName='" + fuelName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fuel fuel = (Fuel) o;
+        return Objects.equals(fuelId, fuel.fuelId) &&
+                Objects.equals(fuelName, fuel.fuelName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fuelId, fuelName);
     }
 }

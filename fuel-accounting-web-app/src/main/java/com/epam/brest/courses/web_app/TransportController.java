@@ -163,17 +163,20 @@ public class TransportController {
     /**
      * Persist new transport into persistence storage.
      *
+     * @param model Model.
      * @param transport new transport with filled data.
      * @param result binding result.
      * @return view name.
      */
     @PostMapping(value = "/transport")
-    public String addTransport(@Valid Transport transport, BindingResult result){
+    public String addTransport(Model model, @Valid Transport transport, BindingResult result){
         LOGGER.debug("addTransport({}, {})", transport, result);
         transportNameValidator.validate(transport, result);
         transportDateValidator.validate(transport, result);
         transportTankCapasityValidator.validate(transport, result);
         if (result.hasErrors()) {
+            model.addAttribute("isNew", true);
+            model.addAttribute("fuels", this.fuelService.findAll());
             return "transport";
         } else {
             this.transportService.create(transport);
