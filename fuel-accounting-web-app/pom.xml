@@ -114,7 +114,7 @@
         <profile>
             <id>tomcat</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
                 <property>
                     <name>fuel-accounting-web-tomcat</name>
                     <value>tomcat</value>
@@ -130,7 +130,7 @@
         <profile>
             <id>jetty</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
                 <property>
                     <name>fuel-accounting-web-jetty</name>
                     <value>jetty</value>
