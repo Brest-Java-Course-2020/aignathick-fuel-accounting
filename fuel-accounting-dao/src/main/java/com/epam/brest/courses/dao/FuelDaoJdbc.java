@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,6 +17,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 
 import static com.epam.brest.courses.constants.FuelConstants.FUEL_ID;
 import static com.epam.brest.courses.constants.FuelConstants.FUEL_NAME;
@@ -25,6 +27,8 @@ import static com.epam.brest.courses.constants.FuelConstants.COLUMN_FUEL_NAME;
 /**
  * FUEL DAO JDBC implementation.
  */
+@Component
+@PropertySource("classpath:dao.properties")
 public class FuelDaoJdbc implements FuelDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FuelDaoJdbc.class);

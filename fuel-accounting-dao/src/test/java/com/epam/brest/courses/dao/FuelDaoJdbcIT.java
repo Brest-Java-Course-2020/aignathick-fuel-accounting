@@ -1,12 +1,18 @@
 package com.epam.brest.courses.dao;
 
+import com.epam.brest.courses.dao.testConfiguration.TestConfig;
+import com.epam.brest.courses.model.Fuel;
 import com.epam.brest.courses.model.Fuel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -17,16 +23,22 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest(classes = {Fuel.class, TestConfig.class})
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-dao.xml", "classpath:dao.xml"})
+@TestPropertySource("classpath:dao.properties")
+@Sql({"classpath:create-db.sql", "classpath:init-db.sql"})
+@ActiveProfiles("test")
 public class FuelDaoJdbcIT {
 
-    private final FuelDao fuelDao;
+//    private final FuelDao fuelDao;
+//
+//    @Autowired
+//    public FuelDaoJdbcIT(FuelDao fuelDao) {
+//        this.fuelDao = fuelDao;
+//    }
 
     @Autowired
-    public FuelDaoJdbcIT(FuelDao fuelDao) {
-        this.fuelDao = fuelDao;
-    }
+    FuelDao fuelDao;
 
     @Test
     public void shoulFindAllFuels() {

@@ -9,7 +9,7 @@ import java.util.Date;
  * POJO Transport for model.
  */
 public class Transport {
-    public static final String datePattern = "yyyy-MM-dd";
+    public static final String DATE_PATTERN = "yyyy-MM-dd";
     public static final String EUROPE_MINSK = "Europe/Minsk";
     /**
      * Transport Id.
@@ -30,8 +30,8 @@ public class Transport {
     /**
      * Transport Date.
      */
-    @DateTimeFormat(pattern = datePattern)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = datePattern, timezone = EUROPE_MINSK)
+    @DateTimeFormat(pattern = DATE_PATTERN)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_PATTERN, timezone = EUROPE_MINSK)
     private Date transportDate;
 
     /**

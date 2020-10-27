@@ -5,6 +5,7 @@ import com.epam.brest.courses.model.Transport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 
 import java.sql.Types;
 import java.util.Date;
@@ -24,6 +26,8 @@ import static com.epam.brest.courses.constants.TransportConstants.*;
 /**
  * TRANSPORT DAO JDBC implementation.
  */
+@Component
+@PropertySource("classpath:dao.properties")
 public class TransportDaoJdbc implements TransportDao {
 
     private final Logger LOGGER = LoggerFactory.getLogger(TransportDaoJdbc.class);
